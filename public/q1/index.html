@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Q2 - Static Resource Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #eef2f3;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Q2 Static Page</h1>
+  <p>This page is served as a static resource from the server.</p>
+  
+  <button id="helloBtn">Get Hello Message from Server</button>
+  
+  <p id="message"></p>
+
+  <script>
+    document.getElementById('helloBtn').addEventListener('click', () => {
+      fetch('/gethello')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('message').textContent = data;
+        })
+        .catch(err => {
+          document.getElementById('message').textContent = 'Error: ' + err;
+        });
+    });
+  </script>
+</body>
+</html>
